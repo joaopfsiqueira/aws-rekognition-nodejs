@@ -1,5 +1,6 @@
 const { Rekognition } = require("aws-sdk");
 const fs = require("fs");
+const path = require("path");
 
 const rekognition = new Rekognition({
     region: "us-east-1"
@@ -8,13 +9,14 @@ const rekognition = new Rekognition({
 rekognition.detectFaces({
     Attributes: ["ALL"],
     Image: {
-        Bytes: fs.readFileSync("./Imagem do iOS.jpg")
+        Bytes: fs.readFileSync(path.resolve(__dirname, "./Imagem do iOS.jpg"))
     }
 }, (err, data) => {
     if(err) {
         console.log(err, err.stack)
     } else {
-        console.log(data)
+        // console.log(JSON.stringify(data.FaceDetails))
+        fs.writeFileSync(path.resolve(__dirname, "./result.json"), JSON.stringify(data))
     }
 }
 )
