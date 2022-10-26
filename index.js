@@ -17,19 +17,19 @@ const rekognition = new Rekognition({
 //     }
 // )
 
-rekognition.indexFaces({
-    CollectionId: "default",
-    Image: {
-        Bytes: fs.readFileSync(path.resolve(__dirname, "./Imagem do iOS.jpg"))
-    }
-}, (err, data) => {
-    if (err) {
-        console.log(err)
-    } else {
-        fs.writeFileSync(path.resolve(__dirname, "./faceSave.json"), JSON.stringify(data))
-    }
-}
-)
+// rekognition.indexFaces({
+//     CollectionId: "default",
+//     Image: {
+//         Bytes: fs.readFileSync(path.resolve(__dirname, "./Imagem do iOS.jpg"))
+//     }
+// }, (err, data) => {
+//     if (err) {
+//         console.log(err)
+//     } else {
+//         fs.writeFileSync(path.resolve(__dirname, "./faceSave.json"), JSON.stringify(data))
+//     }
+// }
+// )
 
 // rekognition.detectFaces({
 //     Attributes: ["ALL"],
@@ -45,3 +45,18 @@ rekognition.indexFaces({
 //     }
 // }
 // )
+
+
+rekognition.searchFacesByImage({
+    CollectionId: "default",
+    "Image": {
+        Bytes: fs.readFileSync(path.resolve(__dirname, "./Imagem do iOS.jpg"))
+    }
+}, (err, data) => {
+    if (err) {
+        console.log(err, err.stack)
+    } else {
+        fs.writeFileSync(path.resolve(__dirname, "./validaFace.json"), JSON.stringify(data))
+    }
+}
+)
