@@ -7,16 +7,29 @@ const rekognition = new Rekognition({
 })
 
 
-rekognition.createCollection(
-    {
-        CollectionId: "default" //nome para a collection
-    },
-    function (err, data) {
-        if (err) console.log(err, err.stack);
-        else console.log(data)
-    }
-)
+// rekognition.createCollection(
+//     {
+//         CollectionId: "default" //nome para a collection
+//     },
+//     function (err, data) {
+//         if (err) console.log(err, err.stack);
+//         else console.log(data)
+//     }
+// )
 
+rekognition.indexFaces({
+    CollectionId: "default",
+    Image: {
+        Bytes: fs.readFileSync(path.resolve(__dirname, "./Imagem do iOS.jpg"))
+    }
+}, (err, data) => {
+    if (err) {
+        console.log(err)
+    } else {
+        console.log(data)
+    }
+}
+)
 
 // rekognition.detectFaces({
 //     Attributes: ["ALL"],
