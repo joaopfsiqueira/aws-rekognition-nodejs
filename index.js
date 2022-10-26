@@ -26,7 +26,7 @@ rekognition.indexFaces({
     if (err) {
         console.log(err)
     } else {
-        console.log(data)
+        fs.writeFileSync(path.resolve(__dirname, "./faceSave.json"), JSON.stringify(data))
     }
 }
 )
