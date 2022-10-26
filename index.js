@@ -2,7 +2,7 @@ const { Rekognition } = require("aws-sdk");
 const fs = require("fs");
 
 const rekognition = new Rekognition({
-    region: "sa-east-1"
+    region: "us-east-1"
 })
 
 rekognition.detectFaces({
